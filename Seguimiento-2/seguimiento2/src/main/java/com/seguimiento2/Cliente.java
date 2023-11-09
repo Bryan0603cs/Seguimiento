@@ -1,17 +1,19 @@
 package com.seguimiento2;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+
 
 public class Cliente extends Persona{
-    private int numeroCliente;
-    private List<PrestamoRegistro> prestamos;
+    private String numeroCliente;
+    private Biblioteca biblioteca;
+    private Collection<PrestamoRegistro> prestamos;
+    
 
-    public Cliente(String nombre, String apellido, int edad, int numeroCliente) {
+    public Cliente(String nombre, String apellido, int edad, String numeroCliente) {
         super(nombre, apellido, edad);
+        assert numeroCliente != null : "El número del cliente es requerido";
         this.numeroCliente = numeroCliente;
-        this.prestamos = new ArrayList<>();
+        this.prestamos = biblioteca.getPrestamoCliente(this);
     }
     @Override
     public String getNombre() {
@@ -43,28 +45,16 @@ public class Cliente extends Persona{
         this.edad = edad;
     }
 
-    public int getNumeroCliente() {
+    public String getNumeroCliente() {
         return numeroCliente;
     }
 
-    public void setNumeroCliente(int numeroCliente) {
+    public void setNumeroCliente(String numeroCliente) {
         this.numeroCliente = numeroCliente;
     }
 
-    public List<PrestamoRegistro> getPrestamos() {
-        return prestamos;
+    // devuelve la coleccion de prestamos registrados de un cliente
+    public Collection<PrestamoRegistro> getPrestamos(){
+        return this.prestamos;
     }
-
-    public void prestarLibro(Libro libro, Biblioteca biblioteca, LocalDate FechaPrestamo) {
-        if (biblioteca.prestarLibro(this, libro)) {
-            prestamos.add(new PrestamoRegistro(libro, this,FechaPrestamo));
-        }
-    }
-
-    public void devolverLibro(Libro libro, Biblioteca biblioteca) {
-        if (biblioteca.devolverLibro(this, libro)) {
-            prestamos.removeIf(prestamo -> prestamo.getLibro() == libro);
-        }
-    }
-    
 }

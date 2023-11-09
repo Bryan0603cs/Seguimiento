@@ -6,6 +6,11 @@ public abstract class Persona {
     public int edad;
 
     public Persona(String nombre, String apellido, int edad) {
+        
+        assert nombre != null: "El nombre es requerido";
+        assert apellido != null: "El apellido es requerido";
+        assert edad >=0: "La edad ingresada es incorrecta";
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;

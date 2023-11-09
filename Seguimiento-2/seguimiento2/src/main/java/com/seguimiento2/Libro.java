@@ -6,6 +6,11 @@ public class Libro {
     private int ejemplaresDisponibles;
 
     public Libro(String titulo, String autor, int ejemplaresDisponibles) {
+
+        assert titulo != null : "El título del libro es requerido";
+        assert autor != null : "El autor del libro es requerido";
+        assert ejemplaresDisponibles >=0 : "El numero de ejemplares debe ser mayor a cero";
+
         this.titulo = titulo;
         this.autor = autor;
         this.ejemplaresDisponibles = ejemplaresDisponibles;
@@ -23,13 +28,4 @@ public class Libro {
         return ejemplaresDisponibles;
     }
 
-    public void prestar() {
-        if (ejemplaresDisponibles > 0) {
-            ejemplaresDisponibles--;
-        }
-    }
-
-    public void devolver() {
-        ejemplaresDisponibles++;
-    }
 }

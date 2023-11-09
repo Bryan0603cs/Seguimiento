@@ -1,10 +1,13 @@
 package com.seguimiento2;
 
 public class Empleado extends Persona{
-    private String cargo;
+    private CargoEmpleado cargo;
 
-    public Empleado(String nombre, String apellido, int edad, String cargo) {
+    public Empleado(String nombre, String apellido, int edad, CargoEmpleado cargo) {
         super(nombre, apellido, edad);
+
+        assert cargo != null : "El cargo es requerido";
+
         this.cargo = cargo;
     }
     
@@ -39,11 +42,11 @@ public class Empleado extends Persona{
     }
 
 
-    public String getCargo() {
+    public CargoEmpleado getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(CargoEmpleado cargo) {
         this.cargo = cargo;
     }
 }
